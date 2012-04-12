@@ -55,13 +55,6 @@
     <string name="vm_general_settings">General Settings</string>
     <string name="vm_notif_toggles">Notification Toggles</string>
     <string name="vm_clock">Clock</string>
-    <string name="vm_version_title">VillainMod Version</string>
-    <string name="vm_version"></string>
-    <string name="vm_build_date_title">Build Date</string>
-    <string name="vm_build_date"></string>
-    <string name="device_memory_info">Memory</string>
-    <string name="device_cpu_info">CPU</string> 
-    <string name="display_statusbar">Statusbar Tweaks</string>
 
     <!-- Phone SMS over IMS IMS registration required on. Only shown in diagnostic screen, so precise translation is not needed. -->
     <string name="ims_reg_required_on">Turn on IMS registration required</string>

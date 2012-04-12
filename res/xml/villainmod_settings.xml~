@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory
+        android:title="User Interface">
+    </PreferenceCategory>
+    <Preference
+        android:title="StatusBar Options"
+        android:key="status_tweaks"/>
+
+    <Preference 
+        android:title="Lockscreen Options"
+    	android:key="lockscreen_tweaks"/>
+    <Preference
+        android:title="Navigation Bar Options"
+        android:key="navbar_options"/>
+    <Preference 
+        android:title="Miscellaneous Options"
+        android:key="misc_options"/>
+    <PreferenceCategory
+        android:title="General Settings">
+    </PreferenceCategory>
+    <Preference 
+        android:title="Notification Toggles"
+		android:key="notify_toggles"/>
+</PreferenceScreen>
