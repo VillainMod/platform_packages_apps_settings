@@ -62,6 +62,9 @@
     <string name="device_memory_info">Memory</string>
     <string name="device_cpu_info">CPU</string> 
     <string name="display_statusbar">Statusbar Tweaks</string>
+    <string name="vm_maintainer_title">Device Maintainer</string>
+    <string name="vm_maintainer"></string>
+
 
     <!-- Phone SMS over IMS IMS registration required on. Only shown in diagnostic screen, so precise translation is not needed. -->
     <string name="ims_reg_required_on">Turn on IMS registration required</string>

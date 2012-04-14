@@ -62,6 +62,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
     private static final String KEY_DEVICE_CPUINFO = "device_cpu";
     private static final String KEY_DEVICE_MEMINFO = "device_mem";
     private static final String KEY_DEVICE_MODEL = "device_model";
+    private static final String KEY_MOD_COMPILER = "compiled_by";
     private static final String KEY_BASEBAND_VERSION = "baseband_version";
     private static final String KEY_FIRMWARE_VERSION = "firmware_version";
     private static final String KEY_UPDATE_SETTING = "additional_system_update_settings";
@@ -80,6 +81,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
 	setValueSummary(KEY_VILLAIN_VER, "ro.villain.version");
         setStringSummary(KEY_DEVICE_MODEL, Build.MODEL + getMsvSuffix());
         setStringSummary(KEY_BUILD_NUMBER, Build.DISPLAY);
+	setValueSummary(KEY_MOD_COMPILER, "ro.villain.compiler");
 	setValueSummary(KEY_BUILD_DATE, "ro.build.date");
         findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
 
