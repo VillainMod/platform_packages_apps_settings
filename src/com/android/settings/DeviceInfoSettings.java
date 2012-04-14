@@ -58,9 +58,11 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
     private static final String KEY_KERNEL_VERSION = "kernel_version";
     private static final String KEY_BUILD_NUMBER = "build_number";
     private static final String KEY_BUILD_DATE = "build_date";
+    private static final String KEY_VILLAIN_VER = "vm_version";
     private static final String KEY_DEVICE_CPUINFO = "device_cpu";
     private static final String KEY_DEVICE_MEMINFO = "device_mem";
     private static final String KEY_DEVICE_MODEL = "device_model";
+    private static final String KEY_MOD_COMPILER = "compiled_by";
     private static final String KEY_BASEBAND_VERSION = "baseband_version";
     private static final String KEY_FIRMWARE_VERSION = "firmware_version";
     private static final String KEY_UPDATE_SETTING = "additional_system_update_settings";
@@ -76,8 +78,10 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
         setStringSummary(KEY_FIRMWARE_VERSION, Build.VERSION.RELEASE);
         findPreference(KEY_FIRMWARE_VERSION).setEnabled(true);
         setValueSummary(KEY_BASEBAND_VERSION, "gsm.version.baseband");
+	setValueSummary(KEY_VILLAIN_VER, "ro.villain.version");
         setStringSummary(KEY_DEVICE_MODEL, Build.MODEL + getMsvSuffix());
         setStringSummary(KEY_BUILD_NUMBER, Build.DISPLAY);
+	setValueSummary(KEY_MOD_COMPILER, "ro.villain.compiler");
 	setValueSummary(KEY_BUILD_DATE, "ro.build.date");
         findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
 
@@ -88,13 +92,13 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
 	if (cpu_Info != null) {
             setStringSummary(KEY_DEVICE_CPUINFO, cpu_Info);
         } else {
-            getPreferenceScreen().removePreference(findPreference(KEY_DEVICE_CPU));
+            getPreferenceScreen().removePreference(findPreference(KEY_DEVICE_CPUINFO));
         }
 
         if (mem_Info != null) {
             setStringSummary(KEY_DEVICE_MEMINFO, mem_Info);
         } else {
-            getPreferenceScreen().removePreference(findPreference(KEY_DEVICE_MEMORY));
+            getPreferenceScreen().removePreference(findPreference(KEY_DEVICE_MEMINFO));
         }
 
 
@@ -270,7 +274,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
         return "";
     }
     
-        private String getMemInfo() {
+        private String memInfo() {
         String result = null;
         BufferedReader reader = null;
 
@@ -281,7 +285,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
              * Buffers:            5236 kB
              * Cached:            81652 kB
              */
-            String firstLine = readLine(FILENAME_PROC_MEMINFO);
+            String firstLine = readLine(FILENAME_PROC_MEM);
             if (firstLine != null) {
                 String parts[] = firstLine.split("\\s+");
                 if (parts.length == 3) {
@@ -293,7 +297,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
         return result;
     }
 
-    private String getCPUInfo() {
+    private String cpuInfo() {
         String result = null;
 
         try {
@@ -301,7 +305,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
              * Processor	: ARMv7 Processor rev 2 (v7l)
              * BogoMIPS	: 272.62
              */
-            String firstLine = readLine(FILENAME_PROC_CPUINFO);
+            String firstLine = readLine(FILENAME_PROC_CPU);
             if (firstLine != null) {
                 result = firstLine.split(":")[1].trim();
             }
