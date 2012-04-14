@@ -87,6 +87,8 @@
             android:key="haptic_feedback"
             android:title="@string/haptic_feedback_enable_title"
             android:defaultValue="true" />
+<<<<<<< HEAD
+=======
 
     <CheckBoxPreference
             android:key="volume_adjust_sounds"
@@ -99,6 +101,7 @@
             android:title="@string/camera_sounds_title"
             android:summary="@string/camera_sounds_summary"
             android:defaultValue="true" />
+>>>>>>> 1a80ff3... Feature : Volume adjust sound preference 2/2
 
     <ListPreference
             android:key="emergency_tone"
