@@ -30,6 +30,10 @@
 		<Preference
 			android:key="custom_carrier"
 			android:title="Custom carrier label" />
+		<CheckBoxPreference
+			android:key="text_widget"
+			android:title="Battery Text"
+			android:summary="Show percentage text beside battery" />
 
 	</PreferenceCategory>
 

@@ -26,6 +26,7 @@ public class StatusBarClockActivity extends SettingsPreferenceFragment implement
     private static final String PREF_ALARM_ENABLE = "alarm";
     private static final String PREF_CLOCK_WEEKDAY = "clock_weekday";
     private static final String PREF_CUSTOM_CARRIER = "custom_carrier";
+    private static final String PREF_BATTERY_TEXT = "text_widget";
 
 
     ListPreference mClockStyle;
@@ -33,6 +34,7 @@ public class StatusBarClockActivity extends SettingsPreferenceFragment implement
     CheckBoxPreference mAlarm;
     ListPreference mClockWeekday;
     Preference mCustomCarrier;
+    CheckBoxPreference mEnableBatteryWidget;
 
     String mCustom_Carrier_Text = null;
     
@@ -58,6 +60,9 @@ public class StatusBarClockActivity extends SettingsPreferenceFragment implement
         mAlarm = (CheckBoxPreference) findPreference(PREF_ALARM_ENABLE);
         mAlarm.setChecked(Settings.System.getInt(getContentResolver(), Settings.System.STATUSBAR_SHOW_ALARM,
                 1) == 1);
+
+	mEnableBatteryWidget = (CheckBoxPreference) findPreference(PREF_BATTERY_TEXT);
+	mEnableBatteryWidget.setChecked(Settings.System.getInt(getContentResolver(), Settings.System.STATUSBAR_BATTERY_TEXT, 0) == 1);
 
         mClockWeekday = (ListPreference) findPreference(PREF_CLOCK_WEEKDAY);
         mClockWeekday.setOnPreferenceChangeListener(this);
@@ -112,6 +117,10 @@ public class StatusBarClockActivity extends SettingsPreferenceFragment implement
             });
 
             alert.show();
+	} else if (preference == mEnableBatteryWidget) {
+            Settings.System.putInt(getActivity().getContentResolver(),Settings.System.STATUSBAR_BATTERY_TEXT,
+                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
+            return true;
 	}
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
