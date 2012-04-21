@@ -23,4 +23,9 @@
             android:title="Statusbar"
 	    android:fragment="com.android.settings.StatusBarClockActivity"/>
 
+	<Preference
+	    android:key="lockscreen_tweaks"
+	    android:title="Lockscreen"
+	    android:fragment="com.android.settings.LockscreenChooserActivity" />
+
 </PreferenceScreen>
