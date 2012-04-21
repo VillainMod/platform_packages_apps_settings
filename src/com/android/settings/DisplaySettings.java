@@ -52,6 +52,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_ACCELEROMETER = "accelerometer";
     private static final String KEY_FONT_SIZE = "font_size";
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
+    private static final String KEY_CENTER_CLOCK = "centered_statusbar";
 
     private CheckBoxPreference mAccelerometer;
     private ListPreference mFontSizePref;

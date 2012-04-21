@@ -595,6 +595,8 @@ public class Settings extends PreferenceActivity implements ButtonBarHandler {
     public static class RunningServicesActivity extends Settings { /* empty */ }
     public static class ManageAccountsSettingsActivity extends Settings { /* empty */ }
     public static class PowerUsageSummaryActivity extends Settings { /* empty */ }
+    public static class StatusBarClockActivity extends Settings { /* empty */ }
+    public static class InterfaceSettings extends Settings { /* empty */ }
     public static class AccountSyncSettingsActivity extends Settings { /* empty */ }
     public static class AccountSyncSettingsInAddAccountActivity extends Settings { /* empty */ }
     public static class CryptKeeperSettingsActivity extends Settings { /* empty */ }

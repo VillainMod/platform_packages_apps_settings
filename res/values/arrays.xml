@@ -76,6 +76,43 @@
         <!-- Do not translate. -->
         <item>1800000</item>
     </string-array>
+
+    <!-- clock stuff -->
+    <string-array name="clock_style_entries">
+	<item>Right clock</item>
+	<item>Center clock</item>
+	<item>No clock</item>
+    </string-array>
+
+    <string-array name="clock_ampm_entries">
+	<item>Don\'t show</item>
+	<item>Small AM/PM</item>
+	<item>Regular AM/PM</item>
+    </string-array>
+
+    <string-array name="clock_style_values" translatable="false">
+	<item>1</item>
+	<item>2</item>
+	<item>0</item>
+    </string-array>
+
+    <string-array name="clock_ampm_values" translatable="false">
+	<item>2</item>
+	<item>1</item>
+	<item>0</item>
+    </string-array>
+
+    <string-array name="clock_weekday_entries">
+	<item>Don\'t show</item>
+	<item>Small weekday</item>
+	<item>Regular weekday</item>
+    </string-array>
+
+    <string-array name="clock_weekday_values" translatable="false">
+	<item>0</item>
+	<item>1</item>
+	<item>2</item>
+    </string-array>
     
     <!-- Display settings.  The delay in inactivity before the dream is shown. These are shown in a list dialog. -->
     <string-array name="dream_timeout_entries">

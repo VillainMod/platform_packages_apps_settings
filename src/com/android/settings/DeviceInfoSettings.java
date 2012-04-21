@@ -137,7 +137,6 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
                 Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
         Utils.updatePreferenceToSpecificActivityOrRemove(act, parentPreference, KEY_CONTRIBUTORS,
                 Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-
         // Read platform settings for additional system update setting
         boolean isUpdateSettingAvailable =
                 getResources().getBoolean(R.bool.config_additional_system_update_setting_enable);
