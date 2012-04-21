@@ -27,6 +27,9 @@
                 android:key="wallpaper"
                 android:title="@string/wallpaper_settings_title"
                 android:fragment="com.android.settings.WallpaperTypeSettings" />
+	<Preference
+		android:key="statusbar_pref"
+		android:title="@string/display_statusbar" />
 
         <CheckBoxPreference
             android:key="accelerometer"

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory
+        android:title="@string/vm_user_interface">
+    </PreferenceCategory>
+    <Preference
+        android:title="@string/vm_statusbar"
+        android:key="status_tweaks"/>
+
+    <Preference 
+        android:title="@string/vm_lockscreen"
+    	android:key="lockscreen_tweaks"/>
+    <Preference
+        android:title="@string/vm_navbar"
+        android:key="navbar_options"/>
+    <Preference 
+        android:title="@string/vm_misc"
+        android:key="misc_options"/>
+    <PreferenceCategory
+        android:title="@string/vm_general_settings">
+    </PreferenceCategory>
+    <Preference 
+        android:title="@string/vm_notif_toggles"
+ 	android:key="notify_toggles"/>
+    <Preference
+	android:title="@string/vm_clock"
+	android:key="clock_options"/>
+</PreferenceScreen>
