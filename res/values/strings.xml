@@ -64,10 +64,9 @@
     <string name="display_statusbar">Statusbar Tweaks</string>
     <string name="vm_maintainer_title">Device Maintainer</string>
     <string name="vm_maintainer"></string>
-<<<<<<< HEAD
-    
-=======
->>>>>>> 92fb048c84940c41f1a616ddd58aad792335f2d0
+    <string name="interface_settings">Interface</string>
+    <string name="center_statusbar">Centered Statusbar Clock</string>
+
 
 
     <!-- Phone SMS over IMS IMS registration required on. Only shown in diagnostic screen, so precise translation is not needed. -->
