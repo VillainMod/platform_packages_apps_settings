@@ -27,6 +27,11 @@ public class StatusBarClockActivity extends SettingsPreferenceFragment implement
     private static final String PREF_CLOCK_WEEKDAY = "clock_weekday";
     private static final String PREF_CUSTOM_CARRIER = "custom_carrier";
     private static final String PREF_BATTERY_TEXT = "text_widget";
+    private static final String PREF_BATT_BAR = "battery_bar_list";
+    private static final String PREF_BATT_BAR_STYLE = "battery_bar_style";
+    private static final String PREF_BATT_BAR_COLOR = "battery_bar_color";
+    private static final String PREF_BATT_BAR_WIDTH = "battery_bar_thickness";
+    private static final String PREF_BATT_ANIMATE = "battery_bar_animate";
 
 
     ListPreference mClockStyle;
@@ -35,6 +40,10 @@ public class StatusBarClockActivity extends SettingsPreferenceFragment implement
     ListPreference mClockWeekday;
     Preference mCustomCarrier;
     CheckBoxPreference mEnableBatteryWidget;
+    ListPreference mBatteryBar;
+    ListPreference mBatteryBarStyle;
+    ListPreference mBatteryBarThickness;
+    CheckBoxPreference mBatteryBarChargingAnimation;
 
     String mCustom_Carrier_Text = null;
     
@@ -60,6 +69,32 @@ public class StatusBarClockActivity extends SettingsPreferenceFragment implement
         mAlarm = (CheckBoxPreference) findPreference(PREF_ALARM_ENABLE);
         mAlarm.setChecked(Settings.System.getInt(getContentResolver(), Settings.System.STATUSBAR_SHOW_ALARM,
                 1) == 1);
+
+        mBatteryBar = (ListPreference) findPreference(PREF_BATT_BAR);
+        mBatteryBar.setOnPreferenceChangeListener(this);
+        mBatteryBar.setValue((Settings.System
+                .getInt(getActivity().getContentResolver(),
+                        Settings.System.STATUSBAR_BATTERY_BAR, 0))
+                + "");
+
+        mBatteryBarStyle = (ListPreference) findPreference(PREF_BATT_BAR_STYLE);
+        mBatteryBarStyle.setOnPreferenceChangeListener(this);
+        mBatteryBarStyle.setValue((Settings.System.getInt(getActivity()
+                .getContentResolver(),
+                Settings.System.STATUSBAR_BATTERY_BAR_STYLE, 0))
+                + "");
+
+        mBatteryBarChargingAnimation = (CheckBoxPreference) findPreference(PREF_BATT_ANIMATE);
+        mBatteryBarChargingAnimation.setChecked(Settings.System.getInt(
+                getActivity().getContentResolver(),
+                Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE, 0) == 1);
+
+        mBatteryBarThickness = (ListPreference) findPreference(PREF_BATT_BAR_WIDTH);
+        mBatteryBarThickness.setOnPreferenceChangeListener(this);
+        mBatteryBarThickness.setValue((Settings.System.getInt(getActivity()
+                .getContentResolver(),
+                Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, 1))
+                + "");
 
 	mEnableBatteryWidget = (CheckBoxPreference) findPreference(PREF_BATTERY_TEXT);
 	mEnableBatteryWidget.setChecked(Settings.System.getInt(getContentResolver(), Settings.System.STATUSBAR_BATTERY_TEXT, 0) == 1);
@@ -118,10 +153,18 @@ public class StatusBarClockActivity extends SettingsPreferenceFragment implement
 
             alert.show();
 	} else if (preference == mEnableBatteryWidget) {
-            Settings.System.putInt(getActivity().getContentResolver(),Settings.System.STATUSBAR_BATTERY_TEXT,
+            Settings.System.putInt(getContentResolver(),Settings.System.STATUSBAR_BATTERY_TEXT,
                     ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
             return true;
-	}
+
+	} else if (preference == mBatteryBarChargingAnimation) {
+
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
+                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
+            return true;
+
+        }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
@@ -149,9 +192,28 @@ public class StatusBarClockActivity extends SettingsPreferenceFragment implement
             int val = Integer.parseInt((String) newValue);
             result = Settings.System.putInt(getContentResolver(),Settings.System.STATUSBAR_CLOCK_WEEKDAY, val);
 
-        }else  if (preference == mCustomCarrier) {
+        } else  if (preference == mCustomCarrier) {
             return true;
+
+        } else if (preference == mBatteryBar) {
+
+            int val = Integer.parseInt((String) newValue);
+            return Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_BATTERY_BAR, val);
+
+        } else if (preference == mBatteryBarStyle) {
+
+            int val = Integer.parseInt((String) newValue);
+            return Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_BATTERY_BAR_STYLE, val);
+
+        } else if (preference == mBatteryBarThickness) {
+
+            int val = Integer.parseInt((String) newValue);
+            return Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, val);
         }
+
         return result;
     }
 }

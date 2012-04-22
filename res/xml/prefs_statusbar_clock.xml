@@ -30,11 +30,42 @@
 		<Preference
 			android:key="custom_carrier"
 			android:title="Custom carrier label" />
+
+
+	</PreferenceCategory>
+
+	<PreferenceCategory
+		android:key="battery_styles"
+		android:title="Battery">
+
 		<CheckBoxPreference
 			android:key="text_widget"
 			android:title="Battery Text"
 			android:summary="Show percentage text beside battery" />
 
+		<ListPreference
+			android:key="battery_bar_list"
+			android:title="Battery Bar"
+			android:entries="@array/battery_bar_entries"
+			android:entryValues="@array/battery_bar_values" />
+
+		<ListPreference
+			android:key="battery_bar_style"
+			android:title="Battery bar style"
+			android:entries="@array/battery_bar_style_entries"
+			android:entryValues="@array/battery_bar_style_values" />
+
+		<CheckBoxPreference
+			android:key="battery_bar_animate"
+			android:title="Animate bar"
+			android:summary="May cause reduction in performance." />
+
+
+		<ListPreference
+			android:key="battery_bar_thickness"
+			android:title="Battery bar thickness"
+			android:entries="@array/battery_bar_thickness_entries"
+			android:entryValues="@array/battery_bar_thickness_values" />
 	</PreferenceCategory>
 
 </PreferenceScreen>
