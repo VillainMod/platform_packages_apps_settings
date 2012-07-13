@@ -55,6 +55,9 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
     private static final String PROPERTY_URL_SAFETYLEGAL = "ro.url.safetylegal";
     private static final String KEY_KERNEL_VERSION = "kernel_version";
     private static final String KEY_BUILD_NUMBER = "build_number";
+    private static final String KEY_DEVICE_CPU = "device_cpu";
+    private static final String KEY_DEVICE_MEM = "device_mem";
+    private static final String KEY_VILLAIN_VER = "vm_version";
     private static final String KEY_DEVICE_MODEL = "device_model";
     private static final String KEY_BASEBAND_VERSION = "baseband_version";
     private static final String KEY_FIRMWARE_VERSION = "firmware_version";
@@ -73,7 +76,23 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
         setValueSummary(KEY_BASEBAND_VERSION, "gsm.version.baseband");
         setStringSummary(KEY_DEVICE_MODEL, Build.MODEL + getMsvSuffix());
         setStringSummary(KEY_BUILD_NUMBER, Build.DISPLAY);
+        setStringSummary(KEY_VILLAIN_VER, ro.villain.version);
         findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
+        
+	String cpu_Info = cpuInfo();
+	String mem_Info = memInfo();
+
+	if (cpu_Info != null) {
+            setStringSummary(KEY_DEVICE_CPUINFO, cpu_Info);
+        } else {
+            getPreferenceScreen().removePreference(findPreference(KEY_DEVICE_CPUINFO));
+        }
+
+        if (mem_Info != null) {
+            setStringSummary(KEY_DEVICE_MEMINFO, mem_Info);
+        } else {
+            getPreferenceScreen().removePreference(findPreference(KEY_DEVICE_MEMINFO));
+        }
 
         // Remove Safety information preference if PROPERTY_URL_SAFETYLEGAL is not set
         removePreferenceIfPropertyMissing(getPreferenceScreen(), "safetylegal",
@@ -242,5 +261,45 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
             // Fail quietly, returning empty string should be sufficient
         }
         return "";
+    }
+    
+            private String memInfo() {
+        String result = null;
+        BufferedReader reader = null;
+
+        try {
+            /* /proc/meminfo entries follow this format:
+             * MemTotal:         362096 kB
+             * MemFree:           29144 kB
+             * Buffers:            5236 kB
+             * Cached:            81652 kB
+             */
+            String firstLine = readLine(FILENAME_PROC_MEM);
+            if (firstLine != null) {
+                String parts[] = firstLine.split("\\s+");
+                if (parts.length == 3) {
+                    result = Long.parseLong(parts[1])/1024 + " MB";
+                }
+            }
+        } catch (IOException e) {}
+
+        return result;
+    }
+
+    private String cpuInfo() {
+        String result = null;
+
+        try {
+            /* The expected /proc/cpuinfo output is as follows:
+             * Processor	: ARMv7 Processor rev 2 (v7l)
+             * BogoMIPS	: 272.62
+             */
+            String firstLine = readLine(FILENAME_PROC_CPU);
+            if (firstLine != null) {
+                result = firstLine.split(":")[1].trim();
+            }
+        } catch (IOException e) {}
+
+        return result;
     }
 }
