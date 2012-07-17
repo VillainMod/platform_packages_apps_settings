@@ -94,6 +94,18 @@
                 style="?android:preferenceInformationStyle"
                 android:title="@string/model_number"
                 android:summary="@string/device_info_default"/>
+		
+	<!-- Device Memory Info -->
+	<Preference android:key="device_mem"
+		style="?android:preferenceInformationStyle"
+		android:title="Memory"
+		android:summary="@string/device_info_default"/>
+		
+	<!-- Device CPU Info -->
+	<Preference android:key="device_cpu"
+		style="?android:preferenceInformationStyle"
+		android:title="CPU"
+		android:summary="@string/device_info_default"/>		
                 
         <!-- Device firmware version -->
         <Preference android:key="firmware_version" 
