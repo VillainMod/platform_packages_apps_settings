@@ -59,6 +59,9 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
     private static final String PROPERTY_URL_SAFETYLEGAL = "ro.url.safetylegal";
     private static final String KEY_KERNEL_VERSION = "kernel_version";
     private static final String KEY_BUILD_NUMBER = "build_number";
+    private static final String KEY_DEVICE_CPU = "device_cpu";
+    private static final String KEY_DEVICE_MEM = "device_mem";
+    private static final String KEY_VILLAIN_VER = "vm_version";
     private static final String KEY_DEVICE_MODEL = "device_model";
     private static final String KEY_BASEBAND_VERSION = "baseband_version";
     private static final String KEY_FIRMWARE_VERSION = "firmware_version";
@@ -81,8 +84,8 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
         setValueSummary(KEY_BASEBAND_VERSION, "gsm.version.baseband");
         setStringSummary(KEY_DEVICE_MODEL, Build.MODEL + getMsvSuffix());
         setStringSummary(KEY_BUILD_NUMBER, Build.DISPLAY);
+        setStringSummary(KEY_VILLAIN_VER, ro.villain.version);
         findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
-        setValueSummary(KEY_MOD_VERSION, "ro.cm.version");
         setValueSummary(KEY_MOD_BUILD_DATE, "ro.build.date");
 
         String cpuInfo = getCPUInfo();
@@ -294,6 +297,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
         return result;
     }
 
+
     private String getCPUInfo() {
         String result = null;
 
@@ -303,6 +307,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
              * BogoMIPS	: 272.62
              */
             String firstLine = readLine(FILENAME_PROC_CPUINFO);
+
             if (firstLine != null) {
                 result = firstLine.split(":")[1].trim();
             }
